@@ -31,15 +31,20 @@ namespace Tasks.Task4
                 if (index < root.Length)
                 {
                     var q = queueItems.Dequeue() as TreeNode;
-                    q.left = new TreeNode(root[index++]);
-                    q.right = new TreeNode(root[index++]);
+                    q.left = new TreeNode(root[index]);
                     if (q.left.value != null)
                     {
                         queueItems.Enqueue(q.left);
                     }
-                    if (q.right.value != null)
+                    index++;
+                    if (index < root.Length)
                     {
-                        queueItems.Enqueue(q.right);
+                        q.right = new TreeNode(root[index]);
+                        index++;
+                        if (q.right.value != null)
+                        {
+                            queueItems.Enqueue(q.right);
+                        }
                     }
                 }
                 else
